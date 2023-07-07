@@ -33,3 +33,4 @@ services:
     volumes:
       - ./data/wp-content:/var/www/html/wp-content
       - ./src:/var/www/html/wp-content/themes/wp-starter
+      - ./overrides:/var/www/html/wp-content/themes/wp-starter/overrides

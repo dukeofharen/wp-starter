@@ -1,0 +1,1 @@
+This folder contains some scripts that are useful while developing your WordPress theme.
