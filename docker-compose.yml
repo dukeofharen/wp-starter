@@ -29,6 +29,7 @@ services:
       WORDPRESS_DB_USER: root
       WORDPRESS_DB_PASSWORD: root
       WORDPRESS_DB_NAME: wp_starter
+      WORDPRESS_WP_DEBUG: 0
     volumes:
       - ./data/wp-content:/var/www/html/wp-content
       - ./src:/var/www/html/wp-content/themes/wp-starter

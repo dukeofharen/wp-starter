@@ -20,7 +20,6 @@ if (sizeof($categories) > 0) {
                 <div class="entry-title">
                     <h1><?php echo $title; ?></h1>
                 </div>
-                <?php breadcrumbs(); ?>
                 <?php if (has_post_thumbnail()): ?>
                     <?php $thumbnail = get_the_post_thumbnail_url(); ?>
                     <img class="post-thumbnail" src="<?php echo $thumbnail; ?>" alt="<?php echo $title; ?>"/>

@@ -5,7 +5,6 @@
 <footer id="colophon" class="site-footer">
 
     <?php
-    echo "moi"
     ?>
 </footer>
 
