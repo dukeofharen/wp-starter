@@ -1,12 +1,22 @@
 <?php
-$theme_version = wp_get_theme()->get('Version');
-function starter_scripts()
-{
+$theme_version = wp_get_theme()->get( 'Version' );
+function starter_scripts() {
 	global $theme_version;
 //	wp_enqueue_style('starter-style', get_template_directory_uri() . '/assets/css/style.css', array(), $theme_version);
 //
-//	// jQuery
-//	wp_enqueue_script("jquery");
+	$template_dir = get_template_directory_uri();
+
+	// jQuery
+	wp_enqueue_script( "jquery" );
+
+	// Load site script
+	wp_enqueue_script(
+		"wp-starter-js",
+		$template_dir . "/public/scripts/main-bundle.js",
+		array(),
+		$theme_version,
+		true
+	);
 //
 //	// Landing page
 //	wp_enqueue_script(
@@ -93,4 +103,4 @@ function starter_scripts()
 //	wp_enqueue_style('fontawesome-style', get_template_directory_uri() . '/assets/vendor/fontawesome/css/all.min.css', array(), $theme_version);
 }
 
-add_action('wp_enqueue_scripts', 'starter_scripts');
+add_action( 'wp_enqueue_scripts', 'starter_scripts' );
