@@ -60,7 +60,7 @@ module.exports = {
         new CleanWebpackPlugin(),
         new ForkTsCheckerWebpackPlugin(),
         new CopyPlugin({
-            patterns: [{ from: 'assets/img', to: 'img' }]
+            patterns: [{ from: 'assets/static', to: 'static' }]
         }),
         new ESLintPlugin({
             extensions: ['.tsx', '.ts', '.js'],
