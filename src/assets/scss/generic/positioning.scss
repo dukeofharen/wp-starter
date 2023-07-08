@@ -1,0 +1,54 @@
+.container {
+  width: 1200px;
+
+  @include for-tablet-landscape-down {
+    max-width: 100%;
+  }
+}
+
+// Padding & margin
+$spacer: 1;
+$dimensions: (0: 0, 1: 0.25, 2: 0.5, 3: 1, 4: 1.5, 5: 3);
+
+@each $index, $multiplier in $dimensions {
+  $value: $spacer * $multiplier;
+  .p-#{$index} {
+    padding: #{$value}rem !important;
+  }
+
+  .pl-#{$index} {
+    padding-left: #{$value}rem !important;
+  }
+
+  .pr-#{$index} {
+    padding-right: #{$value}rem !important;
+  }
+
+  .pt-#{$index} {
+    padding-top: #{$value}rem !important;
+  }
+
+  .pb-#{$index} {
+    padding-bottom: #{$value}rem !important;
+  }
+
+  .m-#{$index} {
+    margin: #{$value}rem !important;
+  }
+
+  .ml-#{$index} {
+    margin-left: #{$value}rem !important;
+  }
+
+  .mr-#{$index} {
+    margin-right: #{$value}rem !important;
+  }
+
+  .mt-#{$index} {
+    margin-top: #{$value}rem !important;
+  }
+
+  .mb-#{$index} {
+    margin-bottom: #{$value}rem !important;
+  }
+}

@@ -1,4 +1,2 @@
+// Load styles
 import "../scss/style.scss";
-import {TestClass} from "./second-file";
-const instance = new TestClass();
-instance.test123();
