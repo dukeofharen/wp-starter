@@ -12,7 +12,7 @@ function starter_scripts() {
 	// Load site script
 	wp_enqueue_script(
 		"wp-starter-js",
-		$template_dir . "/public/scripts/main-bundle.js",
+		$template_dir . "/public/scripts/main.bundle.js",
 		array(),
 		$theme_version,
 		true

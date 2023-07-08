@@ -5,4 +5,5 @@ This repository contains everything you need to get started with developing a "c
 - Development setup based on Docker (Compose).
 - Script development using TypeScript.
 - Styling using SCSS.
-- 
+
+Special thanks to [Golosay](https://github.com/Golosay/webpack-seed) for the Webpack setup.
