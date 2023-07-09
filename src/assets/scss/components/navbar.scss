@@ -5,6 +5,14 @@
   background-color: $color-1;
 
   .inner {
+    display: flex;
+    flex-direction: row;
+    @include for-tablet-portrait-down {
+      flex-direction: column;
+    }
+
+    justify-content: space-between;
+
     .main-menu-mobile-bar {
       display: none;
       background-color: $color-1;
@@ -20,6 +28,7 @@
       @include for-tablet-portrait-down {
         display: flex;
         align-items: center;
+        justify-content: space-between;
         gap: 5px;
       }
 
@@ -31,6 +40,40 @@
       span {
         font-size: 15px;
         font-weight: bold;
+      }
+
+      > .logo {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        a {
+          display: block;
+
+          img {
+            display: block;
+            max-width: 200px;
+          }
+        }
+      }
+    }
+
+    > .logo {
+      display: flex;
+      @include for-tablet-portrait-down {
+        display: none;
+      }
+
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      a {
+        display: block;
+
+        img {
+          display: block;
+          max-width: 200px;
+        }
       }
     }
 
@@ -91,9 +134,10 @@
                 display: block;
               }
 
-              > a{
+              > a {
                 position: relative;
                 top: -1px;
+
                 &::after {
                   content: "\F282";
                   font-family: "bootstrap-icons" !important;
@@ -140,6 +184,7 @@
 
                 li {
                   padding: 10px 0;
+
                   a {
                     &::before {
                       content: "\F285";

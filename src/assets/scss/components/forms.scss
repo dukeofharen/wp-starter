@@ -2,4 +2,5 @@ input[type="text"], input[type="email"], input[type="url"], textarea {
   border: 1px solid $gray;
   outline: none;
   padding: 5px;
+  border-radius: 3px;
 }

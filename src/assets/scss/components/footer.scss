@@ -1,5 +1,4 @@
 .site-footer {
-
   .menu-widgets-footer {
     display: flex;
     flex-direction: row;
@@ -12,6 +11,10 @@
       ul {
         list-style-type: none;
         padding: 0;
+      }
+
+      @include for-tablet-portrait-down {
+        text-align: center;
       }
     }
 
@@ -78,6 +81,11 @@
 
     .inner {
       text-align: center;
+
+      a {
+        color: $white;
+        text-decoration: none;
+      }
     }
   }
 }
