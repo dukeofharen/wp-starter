@@ -1,23 +1,43 @@
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-    <header class="entry-header">
-        <?php if ( is_singular() ) : ?>
-            <?php the_title( '<h1 class="entry-title default-max-width">', '</h1>' ); ?>
-        <?php else : ?>
-            <?php the_title( sprintf( '<h2 class="entry-title default-max-width"><a href="%s">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
-        <?php endif; ?>
-    </header><!-- .entry-header -->
+<?php
+$title = get_the_title();
+?>
+<div class="inner container">
+    <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+        <div class="post-contents">
+            <header>
+                <div class="entry-title">
+                    <h1><?php echo $title; ?></h1>
+                </div>
+            </header>
+            <div class="entry-content">
+				<?php
+				the_content();
+				?>
+            </div>
+        </div>
 
-    <div class="entry-content">
-        <?php
-        wp_link_pages(
-            array(
-                'before'   => '<nav class="page-links" aria-label="' . esc_attr__( 'Page', 'ducode-wp-starter' ) . '">',
-                'after'    => '</nav>',
-                /* translators: %: Page number. */
-                'pagelink' => esc_html__( 'Page %', 'ducode-wp-starter' ),
-            )
-        );
-
-        ?>
-    </div><!-- .entry-content -->
-</article><!-- #post-<?php the_ID(); ?> -->
+		<?php if ( get_edit_post_link() ) : ?>
+            <footer class="entry-footer default-max-width">
+				<?php
+				edit_post_link(
+					sprintf(
+					/* translators: %s: Post title. Only visible to screen readers. */
+						esc_html__( 'Edit %s', 'ducode-wp-starter' ),
+						'<span class="screen-reader-text">' . get_the_title() . '</span>'
+					),
+					'<span class="edit-link">',
+					'</span>'
+				);
+				?>
+            </footer>
+		<?php endif; ?>
+    </article>
+    <div class="comments">
+		<?php
+		// If comments are open or there is at least one comment, load up the comment template.
+		if ( comments_open() || get_comments_number() ) {
+			comments_template();
+		}
+		?>
+    </div>
+</div>
