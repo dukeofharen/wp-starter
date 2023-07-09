@@ -1,14 +1,40 @@
-.comment-form {
-  > p {
-    display: flex;
-    flex-direction: column;
+.comments {
+  ol.commentlist {
+    li {
+      margin: 20px 0;
+    }
+
+    list-style-type: none;
+    padding: 0;
+
+    ul.children {
+      list-style-type: none;
+    }
+
+    .comment {
+      a {
+        color: $color-1;
+        text-decoration: none;
+
+        &:hover {
+          color: $color-5;
+        }
+      }
+    }
   }
 
-  .comment-form-cookies-consent {
-    display: block;
-  }
+  .comment-form {
+    > p {
+      display: flex;
+      flex-direction: column;
+    }
 
-  .form-submit {
-    display: block;
+    .comment-form-cookies-consent {
+      display: block;
+    }
+
+    .form-submit {
+      display: block;
+    }
   }
 }

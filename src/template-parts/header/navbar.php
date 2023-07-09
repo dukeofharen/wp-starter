@@ -1,5 +1,4 @@
 <!-- TODO logo -->
-<!-- TODO mobile menu -->
 <div class="main-menu">
     <div class="container inner">
         <div class="main-menu-mobile-bar" id="main-menu-mobile-bar"><i class="bi bi-list menu-icon"></i>
