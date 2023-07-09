@@ -44,6 +44,7 @@ services:
       - wp_data:/var/www/html
       - ./src:/var/www/html/wp-content/themes/wp-starter
       - ./overrides:/var/www/html/wp-content/themes/wp-starter/overrides
+      - ./wp-starter-plugin:/var/www/html/wp-content/plugins/wp-starter-plugin
   # https://stackoverflow.com/questions/50999848/how-to-run-wp-cli-in-docker-compose-yml
   wordpress-cli:
     depends_on:
@@ -67,6 +68,7 @@ services:
     volumes:
       - wp_data:/var/www/html
       - ./src:/var/www/html/wp-content/themes/wp-starter
+      - ./wp-starter-plugin:/var/www/html/wp-content/plugins/wp-starter-plugin
 
 volumes:
   db_data:

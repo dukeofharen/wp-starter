@@ -1,0 +1,1 @@
+This is a simple plugin that contains some overrides that are handy when developing this theme (e.g. "fake SMTP" for testing email).
