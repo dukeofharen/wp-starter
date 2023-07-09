@@ -1,0 +1,159 @@
+.main-menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: $color-1;
+
+  .inner {
+    .main-menu-mobile-bar {
+      display: none;
+      background-color: $color-1;
+      color: $white;
+      padding: 13px 16px;
+      transition: color 0.2s;
+      cursor: pointer;
+
+      &:hover {
+        color: $color-1;
+      }
+
+      @include for-tablet-portrait-down {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .menu-icon {
+        font-size: 20px;
+        font-weight: normal;
+      }
+
+      span {
+        font-size: 15px;
+        font-weight: bold;
+      }
+    }
+
+    .menu {
+      @include for-tablet-portrait-down {
+        display: none;
+      }
+
+      > ul {
+        display: flex;
+        flex-direction: row;
+        gap: 24px;
+        @include for-tablet-portrait-down {
+          flex-direction: column;
+          gap: 5px;
+        }
+
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+
+        > li.menu-item {
+          display: flex;
+          flex-direction: column;
+          position: relative;
+          padding: 10px 0;
+          @include for-tablet-portrait-down {
+            padding: 13px 16px;
+
+            &:not(:last-child) {
+              border-bottom: 1px solid $color-2;
+            }
+          }
+
+          &.current_page_item {
+            > a {
+              color: $color-3;
+            }
+          }
+
+          > a {
+            font-size: 18px;
+            text-decoration: none;
+            color: $white;
+
+            @include for-tablet-portrait-down {
+              font-size: 12px;
+            }
+
+            &:hover {
+              color: $color-3;
+            }
+          }
+
+          &.menu-item-has-children {
+            @include for-tablet-portrait-up {
+              &:hover > ul.sub-menu {
+                display: block;
+              }
+
+              > a::after {
+                content: "\f107";
+                font-family: "FontAwesome";
+                font-size: 20px;
+                padding-left: 6px;
+                position: relative;
+                top: 1px;
+              }
+
+              > ul.sub-menu {
+                display: none;
+                position: absolute;
+                top: 44px;
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+                background-color: $color-1;
+                width: 220px;
+
+                li {
+                  padding: 15px 10px;
+
+                  a {
+                    text-transform: uppercase;
+                    color: $white;
+                    text-decoration: none;
+                    font-size: 12px;
+                    padding: 3px 0;
+
+                    &:hover {
+                      color: $color-3;
+                    }
+                  }
+                }
+              }
+            }
+
+            @include for-tablet-portrait-down {
+              > ul.sub-menu {
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+
+                li {
+                  a {
+                    &::before {
+                      content: "\f105";
+                      font-family: "FontAwesome";
+                      font-size: 20px;
+                      font-weight: lighter;
+                      padding: 3px 10px 3px 0;
+                    }
+
+                    color: $white;
+                    text-decoration: none;
+                    font-size: 12px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
