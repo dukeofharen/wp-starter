@@ -2,9 +2,11 @@
 </div>
 </div>
 
-<footer id="colophon" class="site-footer">
+<footer class="site-footer">
 
     <?php
+    get_template_part("template-parts/footer/menu-and-widgets-footer");
+    get_template_part("template-parts/footer/copyright-footer");
     ?>
 </footer>
 
