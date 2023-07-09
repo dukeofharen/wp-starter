@@ -63,7 +63,8 @@ services:
       sleep 10;
       wp core install --path="/var/www/html" --url="http://localhost:8000" --title="WP Starter" --admin_user=user --admin_password=pass --admin_email=info@ducode.org;
       wp theme activate wp-starter;
-      wp rewrite structure '/%postname%/'
+      wp rewrite structure '/%postname%/';
+      wp plugin activate wp-starter-plugin
       '
     volumes:
       - wp_data:/var/www/html

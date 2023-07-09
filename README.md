@@ -14,7 +14,7 @@ To get started, perform the following steps:
 
 - In your terminal, in the root folder of the repository, run `docker compose up`. This will perform the following actions:
   - Download the necessary Docker images.
-  - Install WordPress using the WP CLI.
+  - Install and configure WordPress using the WP CLI.
 
 After you see something like this:
 ```
