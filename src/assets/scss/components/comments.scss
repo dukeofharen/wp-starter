@@ -1,0 +1,14 @@
+.comment-form {
+  > p {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .comment-form-cookies-consent {
+    display: block;
+  }
+
+  .form-submit {
+    display: block;
+  }
+}

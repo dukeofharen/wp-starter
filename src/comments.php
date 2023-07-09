@@ -56,4 +56,4 @@ if ( post_password_required() ) { ?>
     <?php endif; ?>
 <?php endif; ?>
 
-<?php comment_form(["submit_button" => '<input name="%1$s" type="submit" id="%2$s" class="%3$s btn btn-purple" value="%4$s" />']); ?>
+<?php comment_form(["submit_button" => '<input name="%1$s" type="submit" id="%2$s" class="%3$s btn btn-primary" value="%4$s" />']); ?>
