@@ -1,6 +1,8 @@
+<!-- TODO logo -->
+<!-- TODO mobile menu -->
 <div class="main-menu">
     <div class="container inner">
-        <div class="main-menu-mobile-bar" id="main-menu-mobile-bar"><i class="menu-icon fa fa-bars"></i>
+        <div class="main-menu-mobile-bar" id="main-menu-mobile-bar"><i class="bi bi-list menu-icon"></i>
             <span>Menu</span>
         </div>
 	    <?php wp_nav_menu( array(

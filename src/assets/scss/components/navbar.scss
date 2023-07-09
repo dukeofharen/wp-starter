@@ -14,7 +14,7 @@
       cursor: pointer;
 
       &:hover {
-        color: $color-1;
+        color: $color-3;
       }
 
       @include for-tablet-portrait-down {
@@ -24,7 +24,7 @@
       }
 
       .menu-icon {
-        font-size: 20px;
+        font-size: 25px;
         font-weight: normal;
       }
 
@@ -91,13 +91,17 @@
                 display: block;
               }
 
-              > a::after {
-                content: "\f107";
-                font-family: "FontAwesome";
-                font-size: 20px;
-                padding-left: 6px;
+              > a{
                 position: relative;
-                top: 1px;
+                top: -1px;
+                &::after {
+                  content: "\F282";
+                  font-family: "bootstrap-icons" !important;
+                  font-size: 20px;
+                  padding-left: 6px;
+                  position: relative;
+                  top: 4px;
+                }
               }
 
               > ul.sub-menu {
@@ -135,18 +139,25 @@
                 margin: 0;
 
                 li {
+                  padding: 10px 0;
                   a {
                     &::before {
-                      content: "\f105";
-                      font-family: "FontAwesome";
-                      font-size: 20px;
+                      content: "\F285";
+                      font-family: "bootstrap-icons" !important;
+                      font-size: 15px;
                       font-weight: lighter;
                       padding: 3px 10px 3px 0;
+                      position: relative;
+                      top: 2px;
                     }
 
                     color: $white;
                     text-decoration: none;
                     font-size: 12px;
+
+                    &:hover {
+                      color: $color-3;
+                    }
                   }
                 }
               }

@@ -31,18 +31,6 @@ module.exports = {
                 }
             },
             {
-                test: /\.(ttf|eot|woff|woff2|svg)$/,
-                include: path.resolve(__dirname, 'assets/scss/fonts'),
-                use: {
-                    loader: 'file-loader',
-                    options: {
-                        name: '[name].[ext]',
-                        outputPath: 'public/fonts',
-                        esModule: false,
-                    },
-                },
-            },
-            {
                 test: /\.(scss|css)$/,
                 use: [
                     process.env.NODE_ENV !== 'production'
