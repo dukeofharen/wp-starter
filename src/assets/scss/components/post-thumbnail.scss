@@ -1,0 +1,12 @@
+.post-thumbnail {
+  background-size: cover;
+  background-position: center;
+
+  @include for-tablet-landscape-up {
+    height: 300px;
+  }
+
+  @include for-tablet-landscape-down {
+    height: 150px;
+  }
+}
