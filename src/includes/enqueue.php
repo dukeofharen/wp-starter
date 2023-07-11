@@ -5,9 +5,6 @@ function starter_scripts() {
 	$template_dir = get_template_directory_uri();
 	$template_path = get_template_directory();
 
-	// jQuery
-	wp_enqueue_script( "jquery" );
-
 	// Load site script
 	wp_enqueue_script(
 		"wp-starter-js",

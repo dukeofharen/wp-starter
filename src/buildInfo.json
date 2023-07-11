@@ -1,0 +1,8 @@
+{
+  "prefix": "wps",
+  "themeName": "WP Starter",
+  "author": "Ducode",
+  "authorUri": "https://ducode.org",
+  "description": "WP Starter theme",
+  "textDomain": "ducode-wp-starter"
+}
