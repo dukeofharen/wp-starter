@@ -38,4 +38,4 @@ All necessary files for developing your new theme are in the `src` folder. First
 
 ## Building
 
-TODO
+To build the theme, execute `npm run build` in the `src` folder. The theme will be built as a .zip file and will be placed in the `src/dist` folder. This file can be uploaded to your live WordPress installation, from the admin backend.
