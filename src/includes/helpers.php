@@ -17,3 +17,29 @@ function shorten($input, $max_length = 300)
 
 	return substr($input, 0, $max_length) . "...";
 }
+
+function ws_get_category($post = false)
+{
+	$categories = get_the_category();
+	$category_name = "";
+	if (sizeof($categories) > 0) {
+		$category = $categories[0];
+		$category_name = $category->name;
+	}
+
+	return $category_name;
+}
+
+function ws_get_featured_image($size, $post_thumbnail_id = false, $default_image_name = "default-image.webp")
+{
+	$default_image = get_template_directory_uri() . "/public/static/img/" . $default_image_name;
+	$result = $default_image;
+	if ($post_thumbnail_id) {
+		$image = wp_get_attachment_image_src($post_thumbnail_id, $size);
+		if ($image) {
+			$result = $image[0];
+		}
+	}
+
+	return $result;
+}

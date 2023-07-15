@@ -1,0 +1,51 @@
+.archive-page {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  .inner {
+    .posts {
+      .item {
+        margin-bottom: 20px;
+        @include for-tablet-portrait-up {
+          grid-template-columns: 1fr 6fr;
+        }
+
+        @include for-tablet-portrait-down {
+          grid-template-columns: auto;
+        }
+
+        .image, .image img {
+          width: 150px;
+          height: 150px;
+        }
+
+        .excerpt {
+          h3, h2 {
+            margin: 0;
+          }
+
+          h2 a {
+            color: $color-1;
+            text-decoration: none;
+
+            &:hover {
+              color: $color-4;
+            }
+          }
+
+          .content-wrapper {
+            a.read-more-link {
+              color: $color-1;
+              text-decoration: none;
+
+              &:hover {
+                color: $color-4;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
