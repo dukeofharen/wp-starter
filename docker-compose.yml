@@ -60,16 +60,14 @@ services:
     command: >
       /bin/sh -c '
       sleep 10;
-      wp core install --path="/var/www/html" --url="http://localhost:8000" --title="WP Starter" --admin_user=user --admin_password=pass --admin_email=info@ducode.org;
-      wp theme activate wp-starter;
-      wp rewrite structure '/%postname%/';
-      wp plugin activate wp-starter-plugin
+      sudo chmod +x /wp-init/wp-init.sh;
+      bash /wp-init/wp-init.sh
       '
     volumes:
       - wp_data:/var/www/html
       - ./src:/var/www/html/wp-content/themes/wp-starter
       - ./wp-starter-plugin:/var/www/html/wp-content/plugins/wp-starter-plugin
-
+      - ./wp-init:/wp-init
 volumes:
   db_data:
   wp_data:
