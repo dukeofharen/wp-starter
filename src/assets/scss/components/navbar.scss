@@ -32,14 +32,18 @@
         gap: 5px;
       }
 
-      .menu-icon {
-        font-size: 25px;
-        font-weight: normal;
-      }
+      .menu-button-wrapper {
+        .menu-icon {
+          font-size: 25px;
+          font-weight: normal;
+        }
 
-      span {
-        font-size: 15px;
-        font-weight: bold;
+        span {
+          font-size: 15px;
+          font-weight: bold;
+          position: relative;
+          bottom: 4px;
+        }
       }
 
       > .logo {

@@ -6,7 +6,7 @@ $site_name     = get_bloginfo( 'name' );
 <div class="main-menu">
     <div class="container inner">
         <div class="main-menu-mobile-bar" id="main-menu-mobile-bar">
-            <div>
+            <div class="menu-button-wrapper">
                 <i class="bi bi-list menu-icon"></i>
                 <span>Menu</span>
             </div>
