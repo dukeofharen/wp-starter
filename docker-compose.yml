@@ -60,8 +60,7 @@ services:
     command: >
       /bin/sh -c '
       sleep 10;
-      sudo chmod +x /wp-init/wp-init.sh;
-      bash /wp-init/wp-init.sh
+      php /wp-init/wp-init.php
       '
     volumes:
       - wp_data:/var/www/html
