@@ -3,10 +3,10 @@
   background-position: center;
 
   @include for-tablet-landscape-up {
-    flex: 0 0 300px
+    flex: 0 0 300px;
   }
 
   @include for-tablet-landscape-down {
-    flex: 0 0 150px
+    flex: 0 0 150px;
   }
 }

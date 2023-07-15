@@ -9,5 +9,6 @@
  */
 
 get_header();
+get_template_part( "template-parts/slideshow/slideshow" );
 get_template_part( "template-parts/archive/archive" );
 get_footer();

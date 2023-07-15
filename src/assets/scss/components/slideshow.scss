@@ -1,0 +1,27 @@
+.slideshow {
+  .swiper-wrapper {
+    .swiper-slide {
+      a {
+        text-decoration: none;
+        color: $color-1;
+        .content {
+          background-size: cover;
+          background-position: center;
+          padding: 10px;
+
+          h1 {
+            margin: 0;
+          }
+
+          @include for-tablet-landscape-up {
+            height: 300px;
+          }
+
+          @include for-tablet-landscape-down {
+            height: 150px;
+          }
+        }
+      }
+    }
+  }
+}
