@@ -4,6 +4,10 @@
   justify-content: center;
   background-color: $color-1;
 
+  .sub-menu {
+    z-index: 999;
+  }
+
   .inner {
     display: flex;
     flex-direction: row;
