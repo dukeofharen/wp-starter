@@ -8,18 +8,24 @@ $query_args = [
 	'order'       => 'DESC',
 	'post_status' => 'publish'
 ];
-$title      = "";
+
+$search = get_query_var( "s" );
+if ( $search ) {
+	$query_args["s"] = $search;
+}
+
+$title = "";
 if ( $object instanceof WP_Term ) {
 	if ( $object->taxonomy === "category" ) {
 		$query_args["cat"] = $object->term_id;
-        $title = translate("Posts for category", "ducode-wp-starter") . " " . $object->name;
+		$title             = translate( "Posts for category", "ducode-wp-starter" ) . " " . $object->name;
 	} else if ( $object->taxonomy === "post_tag" ) {
 		$query_args["tag_id"] = $object->term_id;
-		$title = translate("Posts for tag", "ducode-wp-starter") . " " . $object->name;
+		$title                = translate( "Posts for tag", "ducode-wp-starter" ) . " " . $object->name;
 	}
 } else if ( $object instanceof WP_User ) {
 	$query_args["author"] = $object->ID;
-	$title = translate("Posts for user", "ducode-wp-starter") . " " . $object->display_name;
+	$title                = translate( "Posts for user", "ducode-wp-starter" ) . " " . $object->display_name;
 }
 
 $paging_query = new WP_Query( $query_args );
