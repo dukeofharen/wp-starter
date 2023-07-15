@@ -19,7 +19,7 @@ if ( $object instanceof WP_Term ) {
 	}
 } else if ( $object instanceof WP_User ) {
 	$query_args["author"] = $object->ID;
-	$title = translate("Posts for user", "ducode-wp-starter") . " " . $object->user_nicename;
+	$title = translate("Posts for user", "ducode-wp-starter") . " " . $object->display_name;
 }
 
 $paging_query = new WP_Query( $query_args );

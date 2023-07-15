@@ -5,6 +5,18 @@
   margin-top: 10px;
 
   .inner {
+    .post-contents {
+      .metadata {
+        border-bottom: 3px solid $color-1;
 
+        h2 a {
+          color: $color-1;
+          text-decoration: none;
+          &:hover {
+            color: $color-4;
+          }
+        }
+      }
+    }
   }
 }
