@@ -47,5 +47,21 @@
         }
       }
     }
+
+    .paging {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      font-size: 1.2em;
+
+      a.page-numbers {
+        color: $color-2;
+        text-decoration: none;
+
+        &:hover {
+          color: $color-4;
+        }
+      }
+    }
   }
 }
