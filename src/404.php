@@ -3,7 +3,7 @@ get_header();
 ?>
     <div class="not-found-page">
         <div class="inner container">
-            <h1>Pagina is niet gevonden</h1>
+            <h1>Page not found</h1>
         </div>
     </div>
 
