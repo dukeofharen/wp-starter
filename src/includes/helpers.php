@@ -46,20 +46,31 @@ function get_current_url() {
 }
 
 function get_breadcrumbs() {
+	global $wp_query;
 	$result   = array();
 	$result[] = array( "label" => translate( "Home", "ducode-wp-starter" ), "link" => get_site_url() );
 
 	$post = get_post();
 	if ( is_archive() ) {
-		$title = single_cat_title( '', false );
-		if ( $title ) {
-			$result[] = array( "label" => $title, "link" => get_current_url() );
+		$object = get_queried_object();
+		if ( $object instanceof WP_Term ) {
+			$title = single_cat_title( '', false );
+			if ( $title ) {
+				$result[] = array( "label" => $title, "link" => get_current_url() );
+			}
+		} else if ( $object instanceof WP_User ) {
+			$result[] = array( "label" => $object->display_name, "link" => get_current_url() );
+		} else if ( isset( $wp_query->query["year"] ) && $wp_query->query["monthnum"] ) {
+			$result[] = array(
+				"label" => $wp_query->query["year"] . "/" . $wp_query->query["monthnum"],
+				"link"  => get_current_url()
+			);
 		}
 	} else if ( is_404() ) {
 		$result[] = array( "label" => translate( "Not found", "ducode-wp-starter" ), "link" => get_current_url() );
 	} else if ( is_search() ) {
 		$result[] = array( "label" => get_query_var( "s" ), "link" => get_current_url() );
-	} else if ( !is_home() && !is_front_page() && $post ) {
+	} else if ( ! is_home() && ! is_front_page() && $post ) {
 		if ( $post->post_type === "post" ) {
 			$categories = get_the_category( $post );
 			if ( $categories && sizeof( $categories ) ) {

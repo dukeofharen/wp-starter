@@ -11,6 +11,8 @@ if ( $object instanceof WP_Term ) {
 	}
 } else if ( $object instanceof WP_User ) {
 	$title = translate( "Posts for user", "ducode-wp-starter" ) . " " . $object->display_name;
+} else if ( isset( $wp_query->query["year"] ) && $wp_query->query["monthnum"] ) {
+	$title = translate( "Posts for year and month ", "ducode-wp-starter" ) . $wp_query->query["year"] . "/" . $wp_query->query["monthnum"];
 }
 ?>
 <div class="archive-page">
