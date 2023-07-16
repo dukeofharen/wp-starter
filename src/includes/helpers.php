@@ -18,16 +18,17 @@ function shorten($input, $max_length = 300)
 	return substr($input, 0, $max_length) . "...";
 }
 
-function ws_get_category($post = false)
-{
+function ws_get_category($post = false): array {
 	$categories = get_the_category();
 	$category_name = "";
+	$category_link = "";
 	if (sizeof($categories) > 0) {
 		$category = $categories[0];
 		$category_name = $category->name;
+		$category_link = get_category_link($category);
 	}
 
-	return $category_name;
+	return ["name" => $category_name, "link" => $category_link];
 }
 
 function ws_get_featured_image($size, $post_thumbnail_id = false, $default_image_name = "default-image.webp")

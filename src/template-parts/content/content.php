@@ -2,14 +2,7 @@
 $title = get_the_title();
 $author = get_the_author();
 $author_link = get_author_posts_url($post->post_author);
-$categories = get_the_category();
-$category_name = "";
-$category_link = "";
-if (sizeof($categories) > 0) {
-	$category = $categories[0];
-	$category_name = $category->name;
-	$category_link = get_category_link($category);
-}
+$category = ws_get_category();
 ?>
 <div class="inner container">
     <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -27,7 +20,7 @@ if (sizeof($categories) > 0) {
             <?php if($post->post_type === "post"): ?>
             <div class="metadata">
                 <h2><a href="<?php echo $author_link; ?>"><?php echo $author; ?></a> | <a
-                            href="<?php echo $category_link; ?>"><?php echo $category_name; ?></a></h2>
+                            href="<?php echo $category["link"]; ?>"><?php echo $category["name"]; ?></a></h2>
                 <p>
 		            <?php echo the_date(); ?>, <?php echo get_the_time(); ?>
                 </p>
