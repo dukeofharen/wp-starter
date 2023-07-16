@@ -1,0 +1,38 @@
+.breadcrumbs {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: $color-2;
+
+  .inner {
+
+    ul {
+      padding: 10px 0;
+      margin: 0;
+      list-style-type: none;
+      display: flex;
+      flex-direction: row;
+
+      li {
+        margin: 0;
+
+        &:not(:last-child)::after {
+          content: "»";
+          margin: 0 10px;
+          color: $white;
+        }
+
+        a {
+          color: $white;
+          font-weight: bold;
+          text-decoration: none;
+          font-size: 14px;
+
+          &:hover {
+            color: $color-1;
+          }
+        }
+      }
+    }
+  }
+}
