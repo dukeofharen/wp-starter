@@ -1,5 +1,5 @@
 <?php
-if ( ! is_archive() && ! is_front_page() ):
+if ( ! is_archive() && ! is_front_page() && !is_search() ):
 	$post = get_post();
 	$featured_image = has_post_thumbnail() ?
 		wp_get_attachment_image_src( get_post_thumbnail_id(), "medium_full" )[0] : "";
