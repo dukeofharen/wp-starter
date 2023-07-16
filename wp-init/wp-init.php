@@ -1,11 +1,27 @@
 <?php
-echo shell_exec( 'wp core install --path="/var/www/html" --url="http://localhost:8000" --title="WP Starter" --admin_user=user --admin_password=pass --admin_email=info@ducode.org' );
-echo shell_exec( "wp theme activate wp-starter" );
-echo shell_exec( "wp rewrite structure '/%postname%/'" );
-echo shell_exec( "wp plugin activate wp-starter-plugin" );
+function execute( $command ) {
+	$result_code = 0;
+	$output      = null;
+	$result      = exec( $command, $output, $result_code );
+	if ( ! $result || $result_code !== 0 ) {
+		throw new Exception( "Command '" . $command . "' failed with exit code " . $result_code . "." );
+	}
+
+	return $result;
+}
+
+echo execute( 'wp core install --path="/var/www/html" --url="http://localhost:8000" --title="WP Starter" --admin_user=user --admin_password=pass --admin_email=info@ducode.org' );
+echo execute( "wp theme activate wp-starter" );
+echo execute( "wp rewrite structure '/%postname%/'" );
+echo execute( "wp plugin activate wp-starter-plugin" );
 
 $lipsum_path   = __DIR__ . "/lorem-ipsum.txt";
-$metadata_path = __DIR__ . "/metadata";
+$metadata_path = "/tmp/metadata";
+
+if ( ! file_exists( $metadata_path ) ) {
+	echo "Creating directory " . $metadata_path . "\n";
+	mkdir( $metadata_path );
+}
 
 // Create posts.
 $posts_created_metadata_path = $metadata_path . "/posts_created";
@@ -13,14 +29,32 @@ if ( ! file_exists( $posts_created_metadata_path ) ) {
 	$images = [ "featured1.jpg", "featured2.jpg", "featured3.jpg", "featured4.jpg", "featured5.jpg" ];
 	for ( $i = 0; $i < 20; $i ++ ) {
 		$title = "Post " . $i;
-		echo "Adding post with title " . $title . ".\n";
-		$post_id           = (int) trim( shell_exec( "wp post create " . $lipsum_path . " --post_title='" . $title . "' --post_status='publish' --user=user --porcelain" ) );
+		echo "\nAdding post with title " . $title . ".\n";
+		$post_id           = (int) trim( execute( "wp post create " . $lipsum_path . " --post_title='" . $title . "' --post_status='publish' --user=user --porcelain" ) );
 		$random_image      = $images[ array_rand( $images ) ];
 		$random_image_path = __DIR__ . "/img/" . $random_image;
-		echo shell_exec( "wp media import " . $random_image_path . " --post_id=" . $post_id . " --featured_image" );
+		echo execute( "wp media import " . $random_image_path . " --post_id=" . $post_id . " --featured_image" );
 	}
 
 	file_put_contents( $posts_created_metadata_path, "ok" );
 } else {
-	echo "Posts already added.";
+	echo "Posts already added.\n";
+}
+
+// Create pages and menus
+$pages_created_metadata_path = $metadata_path . "/pages_created";
+if ( ! file_exists( $pages_created_metadata_path ) ) {
+	$menus = [ "primary", "footer1", "footer2", "footer3" ];
+	foreach ( $menus as $menu ) {
+		$menu_id = (int) trim( execute( "wp menu create '" . $menu . "' --porcelain" ) );
+		for ( $i = 0; $i < 5; $i ++ ) {
+			$page_id = (int) trim( execute( "wp post create " . $lipsum_path . " --post_title='Page " . $i . "' --post_type=page --post_status='publish' --porcelain" ) );
+			echo execute( "wp menu item add-post " . $menu . " " . $page_id );
+			echo execute( "wp menu location assign " . $menu . " " . $menu );
+		}
+	}
+
+	file_put_contents( $pages_created_metadata_path, "ok" );
+} else {
+	echo "Pages already added.\n";
 }
