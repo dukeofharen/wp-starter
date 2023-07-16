@@ -27,7 +27,18 @@
             margin: 0;
           }
 
-          h2 a {
+          h3.category-date {
+            a {
+              color: $color-1;
+              text-decoration: none;
+
+              &:hover {
+                color: $color-4;
+              }
+            }
+          }
+
+          h2.title a {
             color: $color-1;
             text-decoration: none;
 
