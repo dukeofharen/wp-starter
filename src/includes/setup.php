@@ -51,7 +51,17 @@ if ( ! function_exists( 'starter_theme_setup' ) ) {
 		add_theme_support( 'custom-line-height' );
 		add_theme_support( 'custom-spacing' );
 		add_filter( 'rss_widget_feed_link', '__return_empty_string' );
+		add_filter( 'wps_breadcrumbs', 'filter_breadcrumbs' );
 	}
 
 	add_action( 'after_setup_theme', 'starter_theme_setup' );
+}
+
+function filter_breadcrumbs( $result ) {
+	// Hide the breadcrumbs on the home / front page.
+	if ( is_home() || is_front_page() ) {
+		return false;
+	}
+
+	return $result;
 }

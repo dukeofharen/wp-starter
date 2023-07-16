@@ -94,5 +94,5 @@ function get_breadcrumbs() {
 		}
 	}
 
-	return $result;
+	return apply_filters("wps_breadcrumbs", $result);
 }
