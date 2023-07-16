@@ -21,7 +21,9 @@ if ( $query->have_posts() ):
                 <div class="swiper-slide">
                     <a href="<?php echo $link; ?>">
                         <div class="content" style="background-image: url(<?php echo $featured_image; ?>);">
-                            <h1><?php echo get_the_title(); ?></h1>
+                            <div class="container">
+                                <h1><?php echo get_the_title(); ?></h1>
+                            </div>
                         </div>
                     </a>
                 </div>
