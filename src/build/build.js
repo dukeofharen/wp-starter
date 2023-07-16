@@ -80,7 +80,7 @@ Text Domain: ${buildInfo.textDomain}
         archive.directory(path.join(rootPath, directory), directory);
     }
 
-    archive.glob('*.php', {cwd: rootPath});
+    archive.glob('*.+(php|jpg)', {cwd: rootPath});
     archive.append(Buffer.from(styleCss), {name: "style.css"});
     archive.finalize();
 })()
