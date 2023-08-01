@@ -1,6 +1,5 @@
 .container {
   width: 1200px;
-  box-sizing: border-box;
 
   @include for-tablet-landscape-down {
     max-width: 100%;
