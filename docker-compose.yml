@@ -55,7 +55,7 @@ services:
       WORDPRESS_DB_USER: root
       WORDPRESS_DB_PASSWORD: root
       WORDPRESS_DB_NAME: wp_starter
-    user: xfs
+    user: root
     restart: on-failure
     command: >
       /bin/sh -c '
@@ -67,6 +67,8 @@ services:
       - ./src:/var/www/html/wp-content/themes/wp-starter
       - ./wp-starter-plugin:/var/www/html/wp-content/plugins/wp-starter-plugin
       - ./wp-init:/wp-init
+      - cli_data:/etc/clidata
 volumes:
   db_data:
   wp_data:
+  cli_data:
