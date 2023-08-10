@@ -9,7 +9,7 @@ services:
     ports:
       - "8000:80"
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./config/nginx.conf:/etc/nginx/nginx.conf
   mailpit:
     image: axllent/mailpit:v1.7.0
   mysql:
@@ -44,6 +44,7 @@ services:
       - wp_data:/var/www/html
       - ./src:/var/www/html/wp-content/themes/wp-starter
       - ./wp-starter-plugin:/var/www/html/wp-content/plugins/wp-starter-plugin
+      - ./config/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
   # https://stackoverflow.com/questions/50999848/how-to-run-wp-cli-in-docker-compose-yml
   wordpress-cli:
     depends_on:
