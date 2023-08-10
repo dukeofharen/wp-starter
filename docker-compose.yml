@@ -30,7 +30,7 @@ services:
       PMA_HOST: mysql
       PMA_ABSOLUTE_URI: http://localhost:8000/phpmyadmin/
   wordpress:
-    image: wordpress:6.2.2-apache
+    image: wordpress:6.3-apache
     depends_on:
       - mysql
     environment:
@@ -40,6 +40,10 @@ services:
       WORDPRESS_DB_PASSWORD: root
       WORDPRESS_DB_NAME: wp_starter
       WORDPRESS_WP_DEBUG: 0
+    command: >
+      /bin/sh -c '
+      chown -R www-data:www-data /var/www/html/wp-content/uploads && apache2-foreground
+      '
     volumes:
       - wp_data:/var/www/html
       - ./src:/var/www/html/wp-content/themes/wp-starter
