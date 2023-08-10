@@ -48,7 +48,7 @@ function get_current_url() {
 function get_breadcrumbs() {
 	global $wp_query;
 	$result   = array();
-	$result[] = array( "label" => translate( "Home", "ducode-wp-starter" ), "link" => get_site_url() );
+	$result[] = array( "label" => translate( "Home", "mijn-borg" ), "link" => get_site_url(), "is_home" => true );
 
 	$post = get_post();
 	if ( is_archive() ) {
@@ -67,7 +67,7 @@ function get_breadcrumbs() {
 			);
 		}
 	} else if ( is_404() ) {
-		$result[] = array( "label" => translate( "Not found", "ducode-wp-starter" ), "link" => get_current_url() );
+		$result[] = array( "label" => translate( "Not found", "mijn-borg" ), "link" => get_current_url() );
 	} else if ( is_search() ) {
 		$result[] = array( "label" => get_query_var( "s" ), "link" => get_current_url() );
 	} else if ( ! is_home() && ! is_front_page() && $post ) {
