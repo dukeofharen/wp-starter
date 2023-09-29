@@ -70,6 +70,7 @@ services:
       - ./wp-starter-plugin:/var/www/html/wp-content/plugins/wp-starter-plugin
       - ./wp-init:/wp-init
       - cli_data:/etc/clidata
+      - ./restore:/etc/wp-starter/restore
 volumes:
   db_data:
   wp_data:
