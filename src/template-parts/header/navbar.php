@@ -22,11 +22,15 @@ $site_name     = get_bloginfo( 'name' );
                 <img src="<?php echo $template_path; ?>/public/static/img/logo.png" alt="<?php echo $site_name; ?>"/>
             </a>
         </div>
-		<?php wp_nav_menu( array(
-			"theme_location"  => "primary",
-			"menu_class"      => "main-menu-ul",
-			"container_class" => "menu",
-			"container_id"    => "main-menu-container"
-		) ); ?>
+		<?php
+		if ( has_nav_menu( "primary" ) ) {
+			wp_nav_menu( array(
+				"theme_location"  => "primary",
+				"menu_class"      => "main-menu-ul",
+				"container_class" => "menu",
+				"container_id"    => "main-menu-container"
+			) );
+		}
+		?>
     </div>
 </div>
