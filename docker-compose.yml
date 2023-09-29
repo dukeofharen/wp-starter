@@ -21,6 +21,20 @@ services:
       - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
+  mysql-import:
+    image: mysql:8
+    restart: on-failure
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: wp_starter
+    command: >
+      /bin/sh -c '
+      chmod +x ./wp-init/import-db.sh && ./wp-init/import-db.sh
+      '
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./wp-init:/wp-init
+      - ./restore:/etc/wp-starter/restore
   phpmyadmin:
     image: phpmyadmin:5
     depends_on:
