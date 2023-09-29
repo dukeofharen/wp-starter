@@ -60,7 +60,7 @@ services:
     restart: on-failure
     command: >
       /bin/sh -c '
-      chown -R www-data:www-data /var/www/html/wp-content/uploads;
+      if [ -d "/var/www/html/wp-content/uploads" ]; then chown -R www-data:www-data /var/www/html/wp-content/uploads; fi;
       sleep 10;
       php /wp-init/wp-init.php
       '
