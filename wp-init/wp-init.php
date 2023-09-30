@@ -27,7 +27,6 @@ if ( $should_import_sql_dump && ! file_exists( $sql_dump_imported_file ) ) {
 
 function wp_init_common() {
 	echo execute( "wp theme activate wp-starter --allow-root" );
-	echo execute( "wp rewrite structure '/%postname%/' --allow-root" );
 	echo execute( "wp plugin activate wp-starter-plugin --allow-root" );
 }
 
@@ -69,6 +68,7 @@ if ( $should_import_sql_dump ) {
 	file_put_contents( $sql_dump_updated_file, "ok" );
 } else {
 	echo execute( 'wp core install --path="/var/www/html" --url="' . $site_root_url . '" --title="WP Starter" --admin_user=' . $admin_user . ' --admin_password=' . $admin_pass . ' --admin_email=' . $admin_mail . ' --allow-root' );
+	echo execute( "wp rewrite structure '/%postname%/' --allow-root" );
 	wp_init_common();
 
 	$lipsum_path = __DIR__ . "/lorem-ipsum.txt";
