@@ -69,11 +69,11 @@ services:
       - wordpress
     image: wordpress:cli
     environment:
-      SITE_ROOT_URL: http://localhost:8000
       WORDPRESS_DB_HOST: mariadb
       WORDPRESS_DB_USER: root
       WORDPRESS_DB_PASSWORD: root
       WORDPRESS_DB_NAME: wp_starter
+      SITE_ROOT_URL: http://localhost:8000
       ADMIN_USERNAME: user
       ADMIN_PASSWORD: pass
       ADMIN_EMAIL: info@ducode.org

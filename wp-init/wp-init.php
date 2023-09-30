@@ -41,14 +41,20 @@ $admin_pass = getenv( "ADMIN_PASSWORD" ) ?? "pass";
 $admin_mail = getenv( "ADMIN_EMAIL" ) ?? "info@ducode.org";
 
 if ( $should_import_sql_dump ) {
+	$sql_dump_updated_file = $metadata_path . "/sql_dump_updated";
+	if ( file_exists( $sql_dump_updated_file ) ) {
+		echo "File " . $sql_dump_updated_file . " exists, so the dump is already successfully written and updated in the database.";
+		exit( 0 );
+	}
+
 	// This code is executed if an existing MySQL WordPress dump is found.
 	wp_init_common();
 
 	echo "Handle SQL dump commands.";
 
-	// Retrieve the current site URL and replace both site URL and home options with the new value.
+	// Retrieve the current site URL and do a full search & replace on the database.
 	$site_url = execute( "wp db query 'SELECT option_value FROM wp_options WHERE option_name=\"siteurl\"' --skip-column-names --allow-root" );
-	$result   = execute( "wp db query \"UPDATE wp_options SET option_value = '" . $site_root_url . "' WHERE option_name = 'siteurl' OR option_name = 'home'\" --allow-root" );
+	echo exec( "wp search-replace '" . $site_url . "' '" . $site_root_url . "' --allow-root" );
 
 	// (Re)set the admin user here.
 	try {
@@ -59,6 +65,8 @@ if ( $should_import_sql_dump ) {
 		// User doesn't exist.
 		echo execute( "wp user create " . $admin_user . " " . $admin_mail . " --user_pass=" . $admin_pass . " --role=administrator --allow-root" );
 	}
+
+	file_put_contents( $sql_dump_updated_file, "ok" );
 } else {
 	echo execute( 'wp core install --path="/var/www/html" --url="' . $site_root_url . '" --title="WP Starter" --admin_user=' . $admin_user . ' --admin_password=' . $admin_pass . ' --admin_email=' . $admin_mail . ' --allow-root' );
 	wp_init_common();
