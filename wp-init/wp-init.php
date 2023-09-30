@@ -30,6 +30,7 @@ function wp_init_common() {
 	echo execute( "wp plugin activate wp-starter-plugin --allow-root" );
 }
 
+$site_title    = getenv( "SITE_TITLE" ) ?? "WP Starter";
 $site_root_url = getenv( "SITE_ROOT_URL" );
 if ( ! $site_root_url ) {
 	throw new Exception( "Environment variable SITE_ROOT_URL not set." );
@@ -67,7 +68,7 @@ if ( $should_import_sql_dump ) {
 
 	file_put_contents( $sql_dump_updated_file, "ok" );
 } else {
-	echo execute( 'wp core install --path="/var/www/html" --url="' . $site_root_url . '" --title="WP Starter" --admin_user=' . $admin_user . ' --admin_password=' . $admin_pass . ' --admin_email=' . $admin_mail . ' --allow-root' );
+	echo execute( 'wp core install --path="/var/www/html" --url="' . $site_root_url . '" --title="' . $site_title . '" --admin_user=' . $admin_user . ' --admin_password=' . $admin_pass . ' --admin_email=' . $admin_mail . ' --allow-root' );
 	echo execute( "wp rewrite structure '/%postname%/' --allow-root" );
 	wp_init_common();
 

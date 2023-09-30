@@ -74,6 +74,7 @@ services:
       WORDPRESS_DB_PASSWORD: root
       WORDPRESS_DB_NAME: wp_starter
       SITE_ROOT_URL: http://localhost:8000
+      SITE_TITLE: WP Starter
       ADMIN_USERNAME: user
       ADMIN_PASSWORD: pass
       ADMIN_EMAIL: info@ducode.org
@@ -81,10 +82,7 @@ services:
     restart: on-failure
     command: >
       /bin/sh -c '
-      set -eu;
-      if [ -d "/var/www/html/wp-content/uploads" ]; then chown -R www-data:www-data /var/www/html/wp-content/uploads; fi;
-      sleep 10;
-      php /wp-init/wp-init.php
+      chmod +x ./wp-init/wp-init.sh && ./wp-init/wp-init.sh
       '
     volumes:
       - wp_data:/var/www/html
