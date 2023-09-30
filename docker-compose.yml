@@ -12,8 +12,8 @@ services:
       - ./config/nginx.conf:/etc/nginx/nginx.conf
   mailpit:
     image: axllent/mailpit:v1.7.0
-  mysql:
-    image: mysql:8
+  mariadb:
+    image: mariadb:11
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: wp_starter
@@ -24,7 +24,7 @@ services:
   mysql-import:
     image: mysql:8
     depends_on:
-      - mysql
+      - mariadb
     restart: on-failure
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -41,18 +41,18 @@ services:
   phpmyadmin:
     image: phpmyadmin:5
     depends_on:
-      - mysql
+      - mariadb
     environment:
       MYSQL_ROOT_PASSWORD: root
-      PMA_HOST: mysql
+      PMA_HOST: mariadb
       PMA_ABSOLUTE_URI: http://localhost:8000/phpmyadmin/
   wordpress:
     image: wordpress:6.3.1-apache
     depends_on:
-      - mysql
+      - mariadb
     environment:
       WORDPRESS_LOCALE: en_US
-      WORDPRESS_DB_HOST: mysql
+      WORDPRESS_DB_HOST: mariadb
       WORDPRESS_DB_USER: root
       WORDPRESS_DB_PASSWORD: root
       WORDPRESS_DB_NAME: wp_starter
@@ -65,14 +65,18 @@ services:
   # https://stackoverflow.com/questions/50999848/how-to-run-wp-cli-in-docker-compose-yml
   wordpress-cli:
     depends_on:
-      - mysql
+      - mariadb
       - wordpress
     image: wordpress:cli
     environment:
-      WORDPRESS_DB_HOST: mysql
+      SITE_ROOT_URL: http://localhost:8000
+      WORDPRESS_DB_HOST: mariadb
       WORDPRESS_DB_USER: root
       WORDPRESS_DB_PASSWORD: root
       WORDPRESS_DB_NAME: wp_starter
+      ADMIN_USERNAME: user
+      ADMIN_PASSWORD: pass
+      ADMIN_EMAIL: info@ducode.org
     user: root
     restart: on-failure
     command: >

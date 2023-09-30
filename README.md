@@ -45,6 +45,6 @@ To build the theme, execute `npm run build` in the `src` folder. The theme will 
 If you want to load an existing website + SQL dump, you can do that as well. Place the complete WordPress directory in the folder `restore/site` and place the SQL dump in `restore/dump.sql`. When starting the container, the following steps are executed:
 
 - The SQL file is written to the database.
-- The contents of the `site` folder are written to the correct Docker volume.
+- The contents of the `site` folder are written to the correct Docker volume. Only the folder `wp-content` and file `.htaccess` are taken into account here.
 - The `wp-config.php` file in the `site` folder is updated with the correct database credentials.
 - A find / replace is executed on the database to replace the "old" URL with the local development URL.
