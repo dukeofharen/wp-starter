@@ -6,3 +6,4 @@
  * Version: 0.0.1
  */
 require __DIR__ . "/mail.php";
+require __DIR__ . "/errors.php";
