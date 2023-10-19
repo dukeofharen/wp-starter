@@ -48,7 +48,7 @@ function get_current_url() {
 function get_breadcrumbs() {
 	global $wp_query;
 	$result   = array();
-	$result[] = array( "label" => translate( "Home", "mijn-borg" ), "link" => get_site_url(), "is_home" => true );
+	$result[] = array( "label" => translate( "Home", "hamam" ), "link" => get_site_url() );
 
 	$post = get_post();
 	if ( is_archive() ) {
@@ -67,7 +67,7 @@ function get_breadcrumbs() {
 			);
 		}
 	} else if ( is_404() ) {
-		$result[] = array( "label" => translate( "Not found", "mijn-borg" ), "link" => get_current_url() );
+		$result[] = array( "label" => translate( "Not found", "hamam" ), "link" => get_current_url() );
 	} else if ( is_search() ) {
 		$result[] = array( "label" => get_query_var( "s" ), "link" => get_current_url() );
 	} else if ( ! is_home() && ! is_front_page() && $post ) {
@@ -75,10 +75,12 @@ function get_breadcrumbs() {
 			$categories = get_the_category( $post );
 			if ( $categories && sizeof( $categories ) ) {
 				$category = $categories[0];
-				$result[] = array( "label" => $category->name, "link" => get_category_link( $category ) );
+				$category_name = apply_filters("wps_breadcrumbs_get_category_name", $category) ?? $category->name;
+				$result[] = array( "label" => $category_name, "link" => get_category_link( $category ) );
 			}
 
-			$result[] = array( "label" => $post->post_title, "link" => get_permalink( $post ) );
+			$post_title = apply_filters("wps_breadcrumbs_get_post_name", $post) ?? $post->post_title;
+			$result[] = array( "label" => $post_title, "link" => get_permalink( $post ) );
 		} else {
 			$post_results   = array();
 			$post_results[] = $post;
@@ -89,10 +91,11 @@ function get_breadcrumbs() {
 
 			$post_results = array_reverse( $post_results );
 			foreach ( $post_results as $post_result ) {
-				$result[] = array( "label" => $post_result->post_title, "link" => get_permalink( $post_result ) );
+				$post_title = apply_filters("wps_breadcrumbs_get_post_name", $post_result) ?? $post_result->post_title;
+				$result[] = array( "label" => $post_title, "link" => get_permalink( $post_result ) );
 			}
 		}
 	}
 
-	return apply_filters("wps_breadcrumbs", $result);
+	return apply_filters( "wps_breadcrumbs", $result );
 }
