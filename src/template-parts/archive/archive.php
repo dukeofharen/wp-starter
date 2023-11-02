@@ -1,18 +1,22 @@
 <?php
 global $wp_query;
+$query = $args['query'] ?? $wp_query;
 $page   = max( get_query_var( 'paged' ), 1 );
 $object = get_queried_object();
 $title  = "";
+$search = get_search_query();
 if ( $object instanceof WP_Term ) {
 	if ( $object->taxonomy === "category" ) {
-		$title = translate( "Posts for category", "ducode-wp-starter" ) . " " . $object->name;
+		$title = translate( "Posts for category", "hamam" ) . " " . $object->name;
 	} else if ( $object->taxonomy === "post_tag" ) {
-		$title = translate( "Posts for tag", "ducode-wp-starter" ) . " " . $object->name;
+		$title = translate( "Posts for tag", "hamam" ) . " " . $object->name;
 	}
 } else if ( $object instanceof WP_User ) {
-	$title = translate( "Posts for user", "ducode-wp-starter" ) . " " . $object->display_name;
-} else if ( isset( $wp_query->query["year"] ) && $wp_query->query["monthnum"] ) {
-	$title = translate( "Posts for year and month ", "ducode-wp-starter" ) . $wp_query->query["year"] . "/" . $wp_query->query["monthnum"];
+	$title = translate( "Posts for user", "hamam" ) . " " . $object->display_name;
+} else if ( isset( $query->query["year"] ) && $query->query["monthnum"] ) {
+	$title = translate( "Posts for year and month", "hamam" )." " . $query->query["year"] . "/" . $query->query["monthnum"];
+} else if ( $search ) {
+	$title = translate( "Search results for", "hamam" ) . " '" . $search . "'";
 }
 ?>
 <div class="archive-page">
@@ -21,8 +25,8 @@ if ( $object instanceof WP_Term ) {
             <h1><?php echo $title; ?></h1>
 		<?php endif; ?>
         <div class="posts">
-			<?php while ( have_posts() ) {
-				the_post();
+			<?php while ( $query->have_posts() ) {
+				$query->the_post();
 				get_template_part( "template-parts/archive/archive-item" );
 			}
 
@@ -32,7 +36,7 @@ if ( $object instanceof WP_Term ) {
             <div class="paging">
 				<?php echo paginate_links( array(
 					'base'         => str_replace( 999999999, '%#%', esc_url( get_pagenum_link( 999999999 ) ) ),
-					'total'        => $wp_query->max_num_pages,
+					'total'        => $query->max_num_pages,
 					'format'       => '?paged=%#%',
 					'show_all'     => false,
 					'type'         => 'plain',
