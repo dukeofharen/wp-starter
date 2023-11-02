@@ -79,7 +79,7 @@ function get_breadcrumbs() {
 				$result[] = array( "label" => $category_name, "link" => get_category_link( $category ) );
 			}
 
-			$post_title = apply_filters("wps_breadcrumbs_get_post_name", $post) ?? $post->post_title;
+			$post_title = apply_filters("wps_breadcrumbs_get_post_name", $post) ?? $post->post_title; // TODO dit filter werkt nog niet helemaal naar behoren.
 			$result[] = array( "label" => $post_title, "link" => get_permalink( $post ) );
 		} else {
 			$post_results   = array();
